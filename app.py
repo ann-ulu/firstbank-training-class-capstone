@@ -39,7 +39,7 @@ def generate_image_from_prompt(prompt):
             response = requests.get(operation_location, headers=headers)
             status = response.json()['status']
 
-        print(response.json())
+
         # Get the results
         image_url = response.json()['result']['data'][0]['url']
 
@@ -82,7 +82,8 @@ def generate_prompt(value):
     return image_url
 
 
-app.layout = html.Div([
+# Set background color for the entire layout
+app.layout = html.Div(style={'backgroundColor': '#f2f2f2'}, children=[
     html.H1(children='My Awesome Image Generation App', style={'textAlign':'center'}),
     dcc.Input(
         id="basic-prompt-input",
@@ -91,8 +92,7 @@ app.layout = html.Div([
         size="100",
     ),
     html.Button('Submit', id='submit-button', n_clicks=0),
-    html.Div(id='image-generation-output',
-             children=''),
+    html.Div(id='image-generation-output', children=''),
     html.Img(id="generated-image")
 ])
 
