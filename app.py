@@ -82,19 +82,57 @@ def generate_prompt(value):
     return image_url
 
 
-# Set background color for the entire layout
-app.layout = html.Div(style={'backgroundColor': '#f2f2f2'}, children=[
-    html.H1(children='My Awesome Image Generation App', style={'textAlign':'center'}),
-    dcc.Input(
-        id="basic-prompt-input",
-        type="text",
-        placeholder="type your basic prompt here",
-        size="100",
-    ),
-    html.Button('Submit', id='submit-button', n_clicks=0),
-    html.Div(id='image-generation-output', children=''),
-    html.Img(id="generated-image")
-])
+
+# Set background image with reduced opacity glassmorphism and address potential margins
+app.layout = html.Div([
+    html.H1(children='Iconic Image Generation App', style={'textAlign':'center', 'padding-top':'25px', 'font-size':'45px', 'color':'#2D1866', 'text-shadow': '0 0 5px #A8D2EA, 0 0 10px #A8D2EA, 0 0 15px #A8D2EA, 0 0 20px #A8D2EA, 0 0 30px #A8D2EA, 0 0 40px #A8D2EA, 0 0 55px #A8D2EA, 0 0 75px #A8D2EA'}),
+    html.Div([
+        dcc.Input(
+            id="basic-prompt-input",
+            type="text",
+            placeholder="Describe what you want to see",
+            size="90",
+            style={
+                "padding-top":"13px",
+                "padding-bottom":"13px",
+                "height": "50px",
+                "margin-right": "5px",  # Reduce the right margin to eliminate space
+                "border-radius": "25px",
+                "font-size": "18px",
+                "font-weight": "bold",
+                "text-align": "center",
+                "background-color": "#BAD5DE",
+                "border": "none",
+                "color": "black",
+                "box-shadow": "2px 2px 5px rgba(0, 0, 0, 0.3)"
+            }
+        ),
+        html.Button('Submit', id='submit-button', n_clicks=0, style={
+            "border": "none",  # Remove border
+            "border-radius": "15px",
+            "background-color": "#b4d6e0",
+            "color": "#2D1866",
+            "font-size": "16px",
+            "font-weight": "bold",
+            "padding": "20px 33px",
+            "box-shadow": "0px 8px 15px rgba(0, 0, 0, 0.1)",  # Add realistic shadow
+        })
+    ], style={"display": "flex", "justify-content": "center", "align-items": "center"}),  # Align items to center
+    html.Div(id="image-generation-output", children=''),
+    html.Img(id="generated-image", style={'width': '500px', 'height': '350px', 'display': 'block', 'margin': 'auto', 'border-radius': '20px', 'margin-top':'30px'}),
+    html.Footer(children="the iconic image generation app was developed by the iconic team", style={'textAlign': 'center', 'padding': '20px', 'position': 'fixed', 'bottom': '0', 'width': '100%', 'font-style': 'italic', 'font-size':'18px'})
+], style={
+    'position': 'fixed',  # Ensures the element is fixed in the viewport
+    'top': 0,  # Aligns the element to the top of the viewport
+    'left': 0,  # Aligns the element to the left of the viewport
+    'height': '100vh',
+    'width': '100vw',
+    'margin': 0,  # Remove any inherited margins
+    'padding': 0,  # Remove any padding
+    'background-image': 'url(https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+    'background-size': 'cover',
+    'background-repeat': 'no-repeat',
+})
 
 
 @callback(
