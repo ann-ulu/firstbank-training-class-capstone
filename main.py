@@ -19,7 +19,7 @@ def main(value):
         temperature=0.7,
         max_tokens=120,
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "You are an expert in a single prompt for DALL-E image generation."},
             {"role": "user", "content": value}
         ]
     )
